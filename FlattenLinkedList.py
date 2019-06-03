@@ -59,30 +59,48 @@ def merge(list1, list2):
         node_l2 = next_node_l2
     return merged
 
-# class NestedLinkedList(LinkedList):
-#     def flatten(self):
-#         # TODO: Implement this method to flatten the linked list in ascending sorted order.
-#         pass
+class NestedLinkedList(LinkedList):
+    def flatten(self):
+        # TODO: Implement this method to flatten the linked list in ascending sorted order.
+        return merge(self.head, self.head)
+        pass
+    def __flatten(self):
+        return merge(self.head, self.next)
 
-# Merge Test Cases
+# First Test scenario
 linked_list = LinkedList(Node(1))
-linked_list.append(3)
-linked_list.append(5)
+linked_list.append(Node(3))
+linked_list.append(Node(5))
+
+nested_linked_list = NestedLinkedList(Node(linked_list))
 
 second_linked_list = LinkedList(Node(2))
 second_linked_list.append(4)
 
-merged = merge(linked_list, second_linked_list)
-node = merged.head
-while node is not None:
-    #This will print 1 2 3 4 5
-    print(node.value)
-    node = node.next
+nested_linked_list.append(Node(second_linked_list))
 
-# Lets make sure it works with a None list - hold, please uncomment later
-merged = merge(None, linked_list)
-node = merged.head
-while node is not None:
-    #This will print 1 2 3 4 5
-    print(node.value)
-    node = node.next
+solution = nested_linked_list.flatten()
+assert solution == [1,2,3,4,5]
+
+# Merge Test Cases
+# linked_list = LinkedList(Node(1))
+# linked_list.append(3)
+# linked_list.append(5)
+#
+# second_linked_list = LinkedList(Node(2))
+# second_linked_list.append(4)
+#
+# merged = merge(linked_list, second_linked_list)
+# node = merged.head
+# while node is not None:
+#     #This will print 1 2 3 4 5
+#     print(node.value)
+#     node = node.next
+#
+# # Lets make sure it works with a None list - hold, please uncomment later
+# merged = merge(None, linked_list)
+# node = merged.head
+# while node is not None:
+#     #This will print 1 2 3 4 5
+#     print(node.value)
+#     node = node.next
